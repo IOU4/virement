@@ -28,6 +28,9 @@ subprojects {
     tasks.named<BootBuildImage>("bootBuildImage") {
         imageName.set("eai/${project.name}")
         environment.set(environment.get() + mapOf("BP_JVM_VERSION" to "17"))
+        if (project.name == "api") {
+            environment.set(environment.get() + mapOf("SPRING_PROFILES_ACTIVE" to "PROD"))
+        }
     }
 
     tasks.withType<Test> {
