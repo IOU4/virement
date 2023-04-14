@@ -1,0 +1,35 @@
+services:
+  api:
+    container_name: virement_api
+    image: eai/api:latest
+    ports:
+      - "8081:8080"
+    networks:
+      - api_network
+    depends_on:
+      - database
+
+  database:
+    container_name: virement_database
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - api_network
+
+  bff:
+    container_name: virement_bff
+    image: eai/bff:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - api_network
+    
+volumes:
+  postgres_data:
+
+networks:
+  api_network:
+    driver: bridge

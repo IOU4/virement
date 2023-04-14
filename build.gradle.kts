@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
+
 plugins {
     java
     id("org.springframework.boot") version "3.0.5" apply false
@@ -21,6 +23,11 @@ subprojects {
 
     repositories {
         mavenCentral()
+    }
+
+    tasks.named<BootBuildImage>("bootBuildImage") {
+        imageName.set("eai/${project.name}")
+        environment.set(environment.get() + mapOf("BP_JVM_VERSION" to "17"))
     }
 
     tasks.withType<Test> {
