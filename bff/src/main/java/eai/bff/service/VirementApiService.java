@@ -4,20 +4,18 @@ import eai.bff.dto.CreateVirementCommand;
 import eai.bff.dto.VirementResponse;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.service.annotation.GetExchange;
-import org.springframework.web.service.annotation.HttpExchange;
 import org.springframework.web.service.annotation.PostExchange;
 
 import java.util.List;
 
-@HttpExchange(url = "/api/virements")
 public interface VirementApiService {
 
-    @GetExchange(url = "/")
+    @GetExchange(url = "/", accept = "application/json")
     List<VirementResponse> getAllVirements();
 
-    @GetExchange(url = "/{id}")
+    @GetExchange(url = "/{id}", accept = "application/json")
     VirementResponse getVirementById(@PathVariable String id);
 
-    @PostExchange(url = "/")
+    @PostExchange(url = "/", accept = "application/json", contentType = "application/json")
     VirementResponse createVirement(CreateVirementCommand command);
 }

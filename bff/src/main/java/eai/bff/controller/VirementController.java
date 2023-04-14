@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController(value = "/api/virements")
+@RestController
 @ResponseStatus(HttpStatus.OK)
 public class VirementController {
 
