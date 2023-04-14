@@ -36,3 +36,4 @@ out/
 ### VS Code ###
 .vscode/
 api/.env
+db.env

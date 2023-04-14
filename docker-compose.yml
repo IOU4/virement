@@ -8,7 +8,6 @@ services:
       - api_network
     depends_on:
       - database
-
   database:
     container_name: virement_database
     image: postgres:latest
@@ -18,7 +17,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - api_network
-
+    env_file:
+      - ./db.env
   bff:
     container_name: virement_bff
     image: eai/bff:latest
@@ -26,7 +26,7 @@ services:
       - "8080:8080"
     networks:
       - api_network
-    
+
 volumes:
   postgres_data:
 
