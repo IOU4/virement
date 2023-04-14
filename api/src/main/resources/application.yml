@@ -1,1 +1,8 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:virement}
+    username: ${DB_USER:eai}
+    password: ${DB_PASS:secret}
+  jpa:
+    hibernate:
+      ddl-auto: update
