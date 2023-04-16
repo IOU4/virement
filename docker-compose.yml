@@ -8,6 +8,10 @@ services:
       - api_network
     depends_on:
       - database
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    env_file:
+      - ./db.env
   database:
     container_name: virement_database
     image: postgres:latest
@@ -26,10 +30,8 @@ services:
       - "8080:8080"
     networks:
       - api_network
-
 volumes:
   postgres_data:
-
 networks:
   api_network:
     driver: bridge
