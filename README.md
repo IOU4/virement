@@ -30,13 +30,15 @@ This command will start the API in the background, and you should be able to acc
 
 The API provides the following endpoints:
 ```
-
+--
 ```
 For more information on how to use these endpoints, please refer to the API documentation.
 
 ## API Documentation
 
-The API documentation is available in the docs folder of the project. You can open the index.html file in a web browser to view the documentation.
+```
+--
+```
 ## Configuration
 
 The API can be configured using environment variables. The following environment variables are supported:
