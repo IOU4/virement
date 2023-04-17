@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/virement", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/virements", produces = MediaType.APPLICATION_JSON_VALUE)
 public class VirementResource {
 
     private final VirementService virementService;
