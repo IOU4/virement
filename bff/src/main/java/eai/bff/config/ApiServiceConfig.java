@@ -1,6 +1,7 @@
 package eai.bff.config;
 
 import eai.bff.service.VirementApiService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -10,11 +11,14 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 @Configuration
 public class ApiServiceConfig {
 
+    @Value("${API_URL}")
+    private String apiUrl;
+
     @Bean
     public WebClient restTemplate() {
         return WebClient
                 .builder()
-                .baseUrl("http://localhost:8081")
+                .baseUrl(apiUrl)
                 .build();
     }
 

@@ -1,4 +1,7 @@
 package eai.bff.dto;
 
-public record CreateVirementCommand(String agentId, String fromId, String toId, double montant) {
+import java.math.BigDecimal;
+
+public record CreateVirementCommand(String agentId, String sourceAccount, String destinationAccount,
+                                    BigDecimal amount) {
 }
