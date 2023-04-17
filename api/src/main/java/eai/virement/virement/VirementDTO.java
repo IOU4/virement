@@ -26,4 +26,7 @@ public class VirementDTO {
   @Digits(integer = 10, fraction = 20)
   private BigDecimal amount;
 
+  @NotNull
+  private String agentId;
+
 }

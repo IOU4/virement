@@ -28,13 +28,16 @@ public class Virement {
   private Long id;
 
   @Column(nullable = false)
-  private String sourceAccount;
+  private String fromId;
 
   @Column(nullable = false)
-  private String destinationAccount;
+  private String toId;
 
   @Column(nullable = false, precision = 10, scale = 20)
   private BigDecimal amount;
+
+  @Column(nullable = false)
+  private String agentId;
 
   @CreatedDate
   @Column(nullable = false, updatable = false)
