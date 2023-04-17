@@ -33,7 +33,7 @@ public class Virement {
   @Column(nullable = false)
   private String toId;
 
-  @Column(nullable = false, precision = 10, scale = 20)
+  @Column(nullable = false, precision = 20, scale = 10)
   private BigDecimal amount;
 
   @Column(nullable = false)

@@ -23,7 +23,7 @@ public class VirementDTO {
   private String destinationAccount;
 
   @NotNull
-  @Digits(integer = 10, fraction = 20)
+  @Digits(integer = 10, fraction = 10)
   private BigDecimal amount;
 
   @NotNull
