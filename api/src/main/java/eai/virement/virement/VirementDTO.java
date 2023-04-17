@@ -16,17 +16,18 @@ public class VirementDTO {
 
   @NotNull
   @Size(max = 255)
-  private String sourceAccount;
+  private String fromId;
 
   @NotNull
   @Size(max = 255)
-  private String destinationAccount;
+  private String toId;
 
   @NotNull
   @Digits(integer = 10, fraction = 10)
   private BigDecimal amount;
 
   @NotNull
+  @Size(max = 255)
   private String agentId;
 
 }
