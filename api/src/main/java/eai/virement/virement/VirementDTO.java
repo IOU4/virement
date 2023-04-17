@@ -2,6 +2,8 @@ package eai.virement.virement;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,6 +26,7 @@ public class VirementDTO {
 
   @NotNull
   @Digits(integer = 10, fraction = 10)
+  @JsonFormat(shape = JsonFormat.Shape.STRING)
   private BigDecimal amount;
 
   @NotNull
