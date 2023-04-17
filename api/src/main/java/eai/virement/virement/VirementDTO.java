@@ -18,11 +18,11 @@ public class VirementDTO {
 
   @NotNull
   @Size(max = 255)
-  private String fromId;
+  private String sourceAccount;
 
   @NotNull
   @Size(max = 255)
-  private String toId;
+  private String destinationAccount;
 
   @NotNull
   @Digits(integer = 10, fraction = 10)

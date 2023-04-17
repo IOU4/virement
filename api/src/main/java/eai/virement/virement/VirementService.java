@@ -46,16 +46,16 @@ public class VirementService {
 
   private VirementDTO mapToDTO(final Virement virement, final VirementDTO virementDTO) {
     virementDTO.setId(virement.getId());
-    virementDTO.setFromId(virement.getFromId());
-    virementDTO.setToId(virement.getToId());
+    virementDTO.setSourceAccount(virement.getSourceAccount());
+    virementDTO.setDestinationAccount(virement.getDestinationAccount());
     virementDTO.setAmount(virement.getAmount());
     virementDTO.setAgentId(virement.getAgentId());
     return virementDTO;
   }
 
   private Virement mapToEntity(final VirementDTO virementDTO, final Virement virement) {
-    virement.setFromId(virementDTO.getFromId());
-    virement.setToId(virementDTO.getToId());
+    virement.setSourceAccount(virementDTO.getSourceAccount());
+    virement.setDestinationAccount(virementDTO.getDestinationAccount());
     virement.setAmount(virementDTO.getAmount());
     virement.setAgentId(virementDTO.getAgentId());
     return virement;

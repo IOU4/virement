@@ -28,10 +28,10 @@ public class Virement {
   private Long id;
 
   @Column(nullable = false)
-  private String fromId;
+  private String sourceAccount;
 
   @Column(nullable = false)
-  private String toId;
+  private String destinationAccount;
 
   @Column(nullable = false, precision = 20, scale = 10)
   private BigDecimal amount;
