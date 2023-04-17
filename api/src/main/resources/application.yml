@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:${DB_PORT:5432}/${DB_NAME:virement}
-    username: ${DB_USER:eai}
-    password: ${DB_PASS:secret}
+    url: jdbc:postgresql://localhost:${DB_PORT:5432}/${POSTGRES_DB:virement}
+    username: ${POSTGRES_USER:eai}
+    password: ${POSTGRES_PASSWORD:secret}
   jpa:
     hibernate:
       ddl-auto: update
