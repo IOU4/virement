@@ -40,3 +40,4 @@ out/
 api/.env
 ldap.env
 openapi.json
+/ldap/

@@ -1,0 +1,17 @@
+services:
+  inner_keycloak:
+    container_name: inner_keycloak
+    image: quay.io/keycloak/keycloak:latest
+    command: start-dev
+    ports:
+      - "8880:8080"
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=password
+    volumes:
+      - inner_keycloak_data:/opt/jboss/keycloak/standalone/data
+    networks:
+      - bff_network
+
+volumes:
+  inner_keycloak_data:

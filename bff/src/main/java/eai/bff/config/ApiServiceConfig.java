@@ -11,7 +11,7 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 @Configuration
 public class ApiServiceConfig {
 
-    @Value("${API_URL}")
+    @Value("${api.url}")
     private String apiUrl;
 
     @Bean
