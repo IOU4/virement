@@ -22,6 +22,8 @@ services:
       - api_network
     env_file:
       - ./api/.env
+    expose:
+      - 5432
   # API Layer End #
 
   # BFF Layer Start #
@@ -79,13 +81,11 @@ services:
       - ./ldap.env
     networks:
       - openldap_network
-  # Outer Layer End #
-
+      # Outer Layer End #
 volumes:
   postgres_data:
   api_keycloak_data:
   bff_keycloak_data:
-
 networks:
   openldap_network:
     driver: bridge

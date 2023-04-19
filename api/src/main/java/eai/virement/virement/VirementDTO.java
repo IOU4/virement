@@ -26,7 +26,6 @@ public class VirementDTO {
 
   @NotNull
   @Digits(integer = 10, fraction = 10)
-  @JsonFormat(shape = JsonFormat.Shape.STRING)
   private BigDecimal amount;
 
   @NotNull
