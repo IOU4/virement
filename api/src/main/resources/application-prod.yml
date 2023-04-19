@@ -5,4 +5,4 @@ spring:
     password: ${POSTGRES_PASSWORD:secret}
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
