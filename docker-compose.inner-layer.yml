@@ -1,4 +1,14 @@
 services:
+  bff:
+    container_name: bff
+    image: eai/bff:latest
+    ports:
+      - "8081:8080"
+    environment:
+      - API_URL=https://rota.serveo.net/
+      - SPRING_PROFILES_ACTIVE=prod
+    networks:
+      - bff_network
   inner_keycloak:
     container_name: inner_keycloak
     image: quay.io/keycloak/keycloak:latest
@@ -15,3 +25,7 @@ services:
 
 volumes:
   inner_keycloak_data:
+
+networks:
+  bff_network:
+    driver: bridge
