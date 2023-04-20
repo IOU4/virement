@@ -3,6 +3,7 @@ package eai.bff.controller;
 import eai.bff.dto.CreateVirementCommand;
 import eai.bff.dto.VirementResponse;
 import eai.bff.service.VirementApiService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,12 @@ public class VirementController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public VirementResponse createVirement(CreateVirementCommand command) {
+    public Long createVirement(@RequestBody @Valid CreateVirementCommand command) {
         return virementService.createVirement(command);
+    }
+
+    @DeleteMapping("/{id}")
+    public void removeVirement(@PathVariable String id) {
+        virementService.removeVirement(id);
     }
 }

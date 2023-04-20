@@ -1,12 +1,11 @@
 services:
-  # API Layer Start #
   api:
-    container_name: virement_api
+    container_name: api
     image: eai/api:latest
     networks:
       - api_network
     ports:
-      - "8081:8080"
+      - "8080:8080"
     depends_on:
       - database
     environment:
@@ -14,8 +13,10 @@ services:
     env_file:
       - ./api/.env
   database:
-    container_name: virement_database
+    container_name: database
     image: postgres:latest
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -28,12 +29,13 @@ services:
 
   # BFF Layer Start #
   bff:
-    container_name: virement_bff
+    container_name: bff
     image: eai/bff:latest
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
-      - API_URL=http://api:8080
+      - API_URL=https://rota.serveo.net/
+      - SPRING_PROFILES_ACTIVE=prod
     networks:
       - bff_network
   inner_keycloak:
@@ -87,8 +89,6 @@ volumes:
   api_keycloak_data:
   bff_keycloak_data:
 networks:
-  openldap_network:
-    driver: bridge
   api_network:
     driver: bridge
   bff_network:

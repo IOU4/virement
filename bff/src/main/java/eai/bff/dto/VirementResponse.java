@@ -1,8 +1,7 @@
 package eai.bff.dto;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 
-public record VirementResponse(String id, String agentId, String sourceAccount, String destinationAccount,
-                               BigDecimal amount, OffsetDateTime dateCreated, OffsetDateTime lastUpdated) {
+public record VirementResponse(Long id, String agentId, String sourceAccount, String destinationAccount,
+                               BigDecimal amount) {
 }
