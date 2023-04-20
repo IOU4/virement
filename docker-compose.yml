@@ -23,11 +23,6 @@ services:
       - api_network
     env_file:
       - ./api/.env
-    expose:
-      - 5432
-  # API Layer End #
-
-  # BFF Layer Start #
   bff:
     container_name: bff
     image: eai/bff:latest
@@ -38,56 +33,8 @@ services:
       - SPRING_PROFILES_ACTIVE=prod
     networks:
       - bff_network
-  inner_keycloak:
-    container_name: virement_inner_keycloak
-    image: quay.io/keycloak/keycloak:latest
-    command: start-dev
-    ports:
-      - "8880:8080"
-    environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=password
-    volumes:
-      - api_keycloak_data:/opt/jboss/keycloak/standalone/data
-    networks:
-      - bff_network
-    depends_on:
-      - bff
-  # BFF Layer End #
-
-  # Outer Layer Start #
-  outer_keycloak:
-    container_name: virement_outer_keycloak
-    image: quay.io/keycloak/keycloak:latest
-    command: start-dev
-    ports:
-      - "8890:8080"
-    environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=password
-    volumes:
-      - bff_keycloak_data:/opt/jboss/keycloak/standalone/data
-    networks:
-      - openldap_network
-    depends_on:
-      - openldap
-  openldap:
-    image: osixia/openldap:latest
-    container_name: openldap
-    hostname: openldap
-    volumes:
-      - ./data/certificates:/container/service/slapd/assets/certs
-      - ./data/slapd/database:/var/lib/ldap
-      - ./data/slapd/config:/etc/ldap/slapd.d
-    env_file:
-      - ./ldap.env
-    networks:
-      - openldap_network
-      # Outer Layer End #
 volumes:
   postgres_data:
-  api_keycloak_data:
-  bff_keycloak_data:
 networks:
   api_network:
     driver: bridge
