@@ -1,5 +1,6 @@
 api:
-  url: http://localhost:8080
+  url: https://eai-api.serveo.net
+  token-url: https://eai-rhsso.serveo.net
 server:
   port: 8081
 springdoc:

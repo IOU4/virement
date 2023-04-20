@@ -1,11 +1,13 @@
 package eai.bff.controller;
 
+import eai.bff.dto.RHSSOTokenResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import eai.bff.service.TokenService;
+import reactor.core.publisher.Mono;
 
 /**
  * TokenController
@@ -20,7 +22,7 @@ public class TokenController {
   }
 
   @GetMapping
-  public ResponseEntity<String> getAccessToken() {
+  public ResponseEntity<Mono<RHSSOTokenResponse>> getAccessToken() {
     return ResponseEntity.ok(tokenService.getAccessToken());
   }
 

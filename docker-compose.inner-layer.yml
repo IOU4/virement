@@ -5,7 +5,7 @@ services:
     ports:
       - "8081:8080"
     environment:
-      - API_URL=https://rota.serveo.net/
+      - API_URL=https://api-2445584177002.staging.gw.apicast.io/virements
       - SPRING_PROFILES_ACTIVE=prod
     networks:
       - bff_network

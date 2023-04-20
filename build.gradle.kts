@@ -25,6 +25,13 @@ subprojects {
         mavenCentral()
     }
 
+    dependencyManagement {
+        imports {
+            mavenBom("org.springdoc:springdoc-openapi:2.1.0")
+            mavenBom("org.springframework.security:spring-security-bom:6.0.3")
+        }
+    }
+
     tasks.named<BootBuildImage>("bootBuildImage") {
         imageName.set("eai/${project.name}")
         environment.set(environment.get() + mapOf("BP_JVM_VERSION" to "17"))

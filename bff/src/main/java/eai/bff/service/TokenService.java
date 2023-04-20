@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import eai.bff.dto.RhssoRokenResponse;
+import eai.bff.dto.RHSSOTokenResponse;
+import reactor.core.publisher.Mono;
 
 /**
  * TokenService
@@ -20,7 +21,7 @@ public class TokenService {
     this.tokenWebClient = tokenWebClient;
   }
 
-  public String getAccessToken() {
+  public Mono<RHSSOTokenResponse> getAccessToken() {
     return tokenWebClient
         .post()
         .uri("/auth/realms/eai-poc/protocol/openid-connect/token")
@@ -31,9 +32,7 @@ public class TokenService {
             .with("client_secret", "E5UWtQMjG8ug5ktjM3Ht6Mihp3N4kPoU")
             .with("scope", "openid"))
         .retrieve()
-        .bodyToMono(RhssoRokenResponse.class)
-        .block()
-        .access_token();
+        .bodyToMono(RHSSOTokenResponse.class);
   }
 
 }
