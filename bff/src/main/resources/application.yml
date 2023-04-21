@@ -1,8 +1,25 @@
 api:
-  url: https://api-2445584177002.staging.gw.apicast.io/
+  url: https://api-2445584177002.staging.gw.apicast.io:443
 server:
   port: 8081
 springdoc:
   api-docs:
     version: openapi_3_0
     path: /docs/openapi
+logging:
+  level:
+    root: debug
+spring:
+  main:
+    web-application-type: reactive
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            token-uri: https://eai-rhsso.serveo.net/auth/realms/eai-poc/protocol/openid-connect/token
+        registration:
+          keycloak:
+            client-id: 64063030
+            client-secret: E5UWtQMjG8ug5ktjM3Ht6Mihp3N4kPoU
+            authorization-grant-type: client_credentials

@@ -8,21 +8,21 @@ import org.springframework.web.service.annotation.DeleteExchange;
 import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.HttpExchange;
 import org.springframework.web.service.annotation.PostExchange;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
-
-@HttpExchange(url = "/api/virements", accept = "application/json")
+@HttpExchange(url = "/virements", accept = "application/json")
 public interface VirementApiService {
 
-    @GetExchange()
-    List<VirementResponse> getAllVirements();
+  @GetExchange()
+  Flux<VirementResponse> getAllVirements();
 
-    @GetExchange(url = "/{id}")
-    VirementResponse getVirementById(@PathVariable String id);
+  @GetExchange(url = "/{id}")
+  Mono<VirementResponse> getVirementById(@PathVariable String id);
 
-    @PostExchange(contentType = "application/json")
-    Long createVirement(@RequestBody CreateVirementCommand command);
+  @PostExchange(contentType = "application/json")
+  Mono<Long> createVirement(@RequestBody CreateVirementCommand command);
 
-    @DeleteExchange(url = "/{id}")
-    void removeVirement(@PathVariable String id);
+  @DeleteExchange(url = "/{id}")
+  Mono<Void> removeVirement(@PathVariable String id);
 }
