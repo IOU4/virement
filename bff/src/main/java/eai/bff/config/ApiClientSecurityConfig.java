@@ -26,13 +26,17 @@ public class ApiClientSecurityConfig {
 
   @Bean
   public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-    return http.cors(cors -> cors.configurationSource(request -> {
+    return http
+            .cors(cors -> cors.configurationSource(request -> {
       var corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
       corsConfiguration.addAllowedOrigin("*");
       corsConfiguration.addAllowedMethod("*");
       corsConfiguration.addAllowedHeader("*");
       return corsConfiguration;
-    })).oauth2Client().and().build();
+    }))
+            .oauth2Client().and()
+            .csrf(ServerHttpSecurity.CsrfSpec::disable)
+            .build();
   }
 
   @Bean(name = "oauth2Filter")

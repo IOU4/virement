@@ -9,13 +9,13 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 @RestControllerAdvice(basePackages = "eai.bff.controller")
 public class VirementApiExceptionHandler {
 
-  @ExceptionHandler(WebClientResponseException.class)
-  public ErrorResponse handleWebClientResponseException(WebClientResponseException e) {
-    return e.getResponseBodyAs(ErrorResponse.class);
-  }
+    @ExceptionHandler(WebClientResponseException.class)
+    public ErrorResponse handleWebClientResponseException(WebClientResponseException e) {
+        return e.getResponseBodyAs(ErrorResponse.class);
+    }
 
-  @ExceptionHandler(Exception.class)
-  public ErrorResponse handleException(Exception e) {
-    return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getClass().getName(), e.getMessage(), null);
-  }
+    @ExceptionHandler(Exception.class)
+    public ErrorResponse handleException(Throwable e) {
+        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getClass().getName(), e.getMessage(), null);
+    }
 }
