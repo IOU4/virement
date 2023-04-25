@@ -50,6 +50,7 @@ public class VirementService {
     virementDTO.setDestinationAccount(virement.getDestinationAccount());
     virementDTO.setAmount(virement.getAmount());
     virementDTO.setAgentId(virement.getAgentId());
+    virementDTO.setDateCreated(virement.getDateCreated());
     return virementDTO;
   }
 
