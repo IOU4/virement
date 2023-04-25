@@ -1,6 +1,7 @@
 package eai.virement.virement;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
@@ -29,5 +30,7 @@ public class VirementDTO {
   @NotNull
   @Size(max = 255)
   private String agentId;
+
+  private OffsetDateTime dateCreated;
 
 }
