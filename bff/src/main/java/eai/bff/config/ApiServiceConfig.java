@@ -4,8 +4,7 @@ import eai.bff.service.VirementApiService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager;
-import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction;
+import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.support.WebClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
@@ -17,14 +16,11 @@ public class ApiServiceConfig {
   private String apiUrl;
 
   @Bean
-  public WebClient webClient(ReactiveOAuth2AuthorizedClientManager authorizedClientManager) {
-
-    var oauth = new ServerOAuth2AuthorizedClientExchangeFilterFunction(authorizedClientManager);
-    oauth.setDefaultClientRegistrationId("keycloak");
-
-    return WebClient.builder()
+  public WebClient webClient(ExchangeFilterFunction oauth2Filter) {
+    return WebClient
+        .builder()
         .baseUrl(apiUrl)
-        .filter(oauth)
+        .filter(oauth2Filter)
         .build();
   }
 
@@ -37,5 +33,4 @@ public class ApiServiceConfig {
   public VirementApiService virementApiService(HttpServiceProxyFactory httpServiceProxyFactory) {
     return httpServiceProxyFactory.createClient(VirementApiService.class);
   }
-
 }
