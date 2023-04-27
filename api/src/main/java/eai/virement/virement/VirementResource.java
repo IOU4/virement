@@ -18,38 +18,38 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/virements", produces = MediaType.APPLICATION_JSON_VALUE)
 public class VirementResource {
 
-    private final VirementService virementService;
+  private final VirementService virementService;
 
-    public VirementResource(final VirementService virementService) {
-        this.virementService = virementService;
-    }
+  public VirementResource(final VirementService virementService) {
+    this.virementService = virementService;
+  }
 
-    @GetMapping
-    public ResponseEntity<List<VirementDTO>> getAllVirements() {
-        return ResponseEntity.ok(virementService.findAll());
-    }
+  @GetMapping
+  public ResponseEntity<List<VirementDTO>> getAllVirements() {
+    return ResponseEntity.ok(virementService.findAll());
+  }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<VirementDTO> getVirement(@PathVariable final Long id) {
-        return ResponseEntity.ok(virementService.get(id));
-    }
+  @GetMapping("/{id}")
+  public ResponseEntity<VirementDTO> getVirement(@PathVariable final Long id) {
+    return ResponseEntity.ok(virementService.get(id));
+  }
 
-    @PostMapping
-    public ResponseEntity<Long> createVirement(@RequestBody @Valid final VirementDTO virementDTO) {
-        return new ResponseEntity<>(virementService.create(virementDTO), HttpStatus.CREATED);
-    }
+  @PostMapping
+  public ResponseEntity<Long> createVirement(@RequestBody @Valid final VirementDTO virementDTO) {
+    return new ResponseEntity<>(virementService.create(virementDTO), HttpStatus.CREATED);
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> updateVirement(@PathVariable final Long id,
-            @RequestBody @Valid final VirementDTO virementDTO) {
-        virementService.update(id, virementDTO);
-        return ResponseEntity.ok().build();
-    }
+  @PutMapping("/{id}")
+  public ResponseEntity<Void> updateVirement(@PathVariable final Long id,
+      @RequestBody @Valid final VirementDTO virementDTO) {
+    virementService.update(id, virementDTO);
+    return ResponseEntity.ok().build();
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVirement(@PathVariable final Long id) {
-        virementService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteVirement(@PathVariable final Long id) {
+    virementService.delete(id);
+    return ResponseEntity.noContent().build();
+  }
 
 }
