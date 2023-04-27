@@ -3,7 +3,6 @@ package eai.bff.controller;
 import eai.bff.dto.CreateVirementCommand;
 import eai.bff.dto.VirementResponse;
 import eai.bff.service.VirementApiService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -31,7 +30,7 @@ public class VirementController {
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
-  public Mono<Long> createVirement(@RequestBody @Valid CreateVirementCommand command) {
+  public Mono<Long> createVirement(@RequestBody CreateVirementCommand command) {
     return virementService.createVirement(command);
   }
 
