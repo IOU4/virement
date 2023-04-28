@@ -4,6 +4,7 @@ import eai.bff.service.VirementApiService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.server.resource.web.reactive.function.client.ServerBearerExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.support.WebClientAdapter;
@@ -16,12 +17,14 @@ public class ApiServiceConfig {
   private String apiUrl;
 
   @Bean
-  public WebClient webClient(ExchangeFilterFunction oauth2Filter) {
-    return WebClient
-        .builder()
-        .baseUrl(apiUrl)
-        .filter(oauth2Filter)
-        .build();
+  public WebClient webClient(ExchangeFilterFunction oauth2Filter, ExchangeFilterFunction copyTokenToProxyAuthorizationHeaderFilter, ExchangeFilterFunction logRequestFilter) {
+    return WebClient.builder().baseUrl(apiUrl)
+      .filter(new ServerBearerExchangeFilterFunction())
+      .filter(logRequestFilter)
+      .filter(copyTokenToProxyAuthorizationHeaderFilter)
+      .filter(logRequestFilter)
+      .filter(oauth2Filter)
+      .build();
   }
 
   @Bean

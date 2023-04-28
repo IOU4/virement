@@ -14,6 +14,10 @@ spring:
     web-application-type: reactive
   security:
     oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://outer-keycloak.serveo.net/realms/EAI_VIREMENTS_BFF
+          jwk-set-uri: http://outer-keycloak.serveo.net/realms/EAI_VIREMENTS_BFF/protocol/openid-connect/certs
       client:
         provider:
           keycloak:
