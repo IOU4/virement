@@ -2,6 +2,8 @@ api:
   url: https://api-2445584177002.staging.gw.apicast.io
 server:
   port: 8081
+  netty:
+    connection-timeout: -1
 springdoc:
   api-docs:
     version: openapi_3_0
@@ -21,5 +23,5 @@ spring:
         registration:
           keycloak:
             client-id: 64063030
-            client-secret: E5UWtQMjG8ug5ktjM3Ht6Mihp3N4kPoU
+            client-secret: YszfZ1bW9i2yf3HExsfKIbeJHhwNSQyH
             authorization-grant-type: client_credentials

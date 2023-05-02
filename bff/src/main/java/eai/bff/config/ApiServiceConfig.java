@@ -16,12 +16,12 @@ public class ApiServiceConfig {
   private String apiUrl;
 
   @Bean
-  public WebClient webClient(ExchangeFilterFunction oauth2Filter) {
-    return WebClient
-        .builder()
-        .baseUrl(apiUrl)
-        .filter(oauth2Filter)
-        .build();
+  public WebClient webClient(ExchangeFilterFunction oauth2Filter, ExchangeFilterFunction logRequestFilter) {
+    return WebClient.builder().baseUrl(apiUrl)
+      .filter(logRequestFilter)
+      .filter(oauth2Filter)
+      .filter(logRequestFilter)
+      .build();
   }
 
   @Bean
