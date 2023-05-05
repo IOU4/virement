@@ -1,13 +1,8 @@
 api:
   url: https://api-2445584177002.staging.gw.apicast.io
+  websocket: wss://socketsbay.com/wss/v2/1/demo/
 server:
   port: 8081
-  netty:
-    connection-timeout: -1
-springdoc:
-  api-docs:
-    version: openapi_3_0
-    path: /docs/openapi
 logging:
   level:
     root: debug
