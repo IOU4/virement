@@ -1,11 +1,8 @@
 api:
   url: https://api-2445584177002.staging.gw.apicast.io
+  websocket: wss://socketsbay.com/wss/v2/1/demo/
 server:
   port: 8081
-springdoc:
-  api-docs:
-    version: openapi_3_0
-    path: /docs/openapi
 logging:
   level:
     root: debug
@@ -16,8 +13,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://outer-keycloak.serveo.net/realms/EAI_VIREMENTS_BFF
           jwk-set-uri: http://outer-keycloak.serveo.net/realms/EAI_VIREMENTS_BFF/protocol/openid-connect/certs
+          jws-algorithms: RS256
       client:
         provider:
           keycloak:
@@ -25,5 +22,7 @@ spring:
         registration:
           keycloak:
             client-id: 64063030
-            client-secret: E5UWtQMjG8ug5ktjM3Ht6Mihp3N4kPoU
+            client-secret: 7eJHp3dSxKDUFRmQEFEK5SjFbGjyYrTo
             authorization-grant-type: client_credentials
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.reactive.ReactiveUserDetailsServiceAutoConfiguration
