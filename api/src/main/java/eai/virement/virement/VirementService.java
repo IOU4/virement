@@ -1,18 +1,19 @@
 package eai.virement.virement;
 
-import eai.virement.util.NotFoundException;
 import java.util.List;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import eai.virement.util.NotFoundException;
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class VirementService {
 
   private final VirementRepository virementRepository;
-
-  public VirementService(final VirementRepository virementRepository) {
-    this.virementRepository = virementRepository;
-  }
+  private final WSSessionService wsSessionService;
 
   public List<VirementDTO> findAll() {
     final List<Virement> virements = virementRepository.findAll(Sort.by("id"));
@@ -30,7 +31,9 @@ public class VirementService {
   public Long create(final VirementDTO virementDTO) {
     final Virement virement = new Virement();
     mapToEntity(virementDTO, virement);
-    return virementRepository.save(virement).getId();
+    var virementId = virementRepository.save(virement).getId();
+    wsSessionService.broadcastTotal();
+    return virementId;
   }
 
   public void update(final Long id, final VirementDTO virementDTO) {
@@ -42,6 +45,7 @@ public class VirementService {
 
   public void delete(final Long id) {
     virementRepository.deleteById(id);
+    wsSessionService.broadcastTotal();
   }
 
   private VirementDTO mapToDTO(final Virement virement, final VirementDTO virementDTO) {
