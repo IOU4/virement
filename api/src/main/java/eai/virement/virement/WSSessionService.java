@@ -4,28 +4,34 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketMessage;
+import org.springframework.web.socket.WebSocketSession;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * WSSessionService
  */
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class WSSessionService {
 
-  private VirementService virementService;
-
-  public void broadcastTotal() {
+  public void broadcastMessage(String message) {
     VirementWSHandler.sessions.forEach(s -> {
       try {
-        s.sendMessage(new TextMessage(String.valueOf(virementService.findAll().size())));
+        s.sendMessage(new TextMessage(message));
       } catch (IOException e) {
         log.error("IOException while");
       }
     });
+  }
+
+  public void sendTotalBySession(WebSocketSession session, String message) {
+    try {
+      session.sendMessage(new TextMessage(message));
+    } catch (IOException e) {
+      log.error(e.getMessage());
+    }
   }
 
 }

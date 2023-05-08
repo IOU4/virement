@@ -32,7 +32,7 @@ public class VirementService {
     final Virement virement = new Virement();
     mapToEntity(virementDTO, virement);
     var virementId = virementRepository.save(virement).getId();
-    wsSessionService.broadcastTotal();
+    wsSessionService.broadcastMessage(String.valueOf(findAll().size()));
     return virementId;
   }
 
@@ -45,7 +45,7 @@ public class VirementService {
 
   public void delete(final Long id) {
     virementRepository.deleteById(id);
-    wsSessionService.broadcastTotal();
+    wsSessionService.broadcastMessage(String.valueOf(findAll().size()));
   }
 
   private VirementDTO mapToDTO(final Virement virement, final VirementDTO virementDTO) {
