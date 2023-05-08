@@ -1,7 +1,7 @@
 services:
   api:
     container_name: api
-    image: eai/api:latest
+    image: ghcr.io/iou4/virement-api:main
     networks:
       - api_network
     ports:
