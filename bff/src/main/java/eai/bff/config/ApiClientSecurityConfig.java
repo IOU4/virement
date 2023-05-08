@@ -38,6 +38,7 @@ public class ApiClientSecurityConfig {
       .csrf(ServerHttpSecurity.CsrfSpec::disable)
       .oauth2Client().and()
       .authorizeExchange(exchanges -> exchanges
+        .pathMatchers("/total").permitAll()
         .anyExchange().authenticated()
       )
       .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt)

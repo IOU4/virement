@@ -18,7 +18,7 @@ public class ReactiveWebSocketConfig {
   @Bean
   public HandlerMapping webSocketHandlerMapping(WebSocketHandler handler) {
     Map<String, WebSocketHandler> map = new HashMap<>();
-    map.put("/ws/sold", handler);
+    map.put("/total", handler);
 
     SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
     handlerMapping.setUrlMap(map);
@@ -26,10 +26,12 @@ public class ReactiveWebSocketConfig {
     return handlerMapping;
   }
 
+  /*
   @Bean
   public ReactorNettyRequestUpgradeStrategy upgradeStrategy() {
     return new ReactorNettyRequestUpgradeStrategy();
   }
+  */
 
   @Bean
   public ReactorNettyWebSocketClient webSocketClient() {
