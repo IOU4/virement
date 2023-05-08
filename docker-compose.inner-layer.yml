@@ -6,7 +6,13 @@ services:
       - "8081:8080"
     environment:
       - API_URL=https://api-2445584177002.staging.gw.apicast.io/virements
+      - WEBSOCKET_URL=wss://socketsbay.com/wss/v2/1/demo/
       - SPRING_PROFILES_ACTIVE=prod
+      - RHSSO_SERVER_JWK_SET_URI=http://outer_keycloak.serveo.net/realms/EAI_VIREMENTS_BFF/protocol/openid-connect/certs
+      - RHSSO_SERVER_JWS_ALGORITHMS=RS256
+      - RHSSO_CLIENT_TOKEN_URI=https://eai-rhsso.serveo.net/auth/realms/eai-poc/protocol/openid-connect/token
+      - RHSSO_CLIENT_ID=64063030
+      - RHSSO_CLIENT_SECRET=7eJHp3dSxKDUFRmQEFEK5SjFbGjyYrTo
     networks:
       - bff_network
   inner_keycloak:

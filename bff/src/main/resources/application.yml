@@ -11,6 +11,10 @@ spring:
     web-application-type: reactive
   security:
     oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://outer-keycloak.serveo.net/realms/EAI_VIREMENTS_BFF/protocol/openid-connect/certs
+          jws-algorithms: RS256
       client:
         provider:
           keycloak:
@@ -18,5 +22,7 @@ spring:
         registration:
           keycloak:
             client-id: 64063030
-            client-secret: YszfZ1bW9i2yf3HExsfKIbeJHhwNSQyH
+            client-secret: 7eJHp3dSxKDUFRmQEFEK5SjFbGjyYrTo
             authorization-grant-type: client_credentials
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.reactive.ReactiveUserDetailsServiceAutoConfiguration

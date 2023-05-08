@@ -11,10 +11,14 @@ spring:
     web-application-type: reactive
   security:
     oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${RHSSO_SERVER_JWK_SET_URI}
+          jws-algorithms: ${RHSSO_SERVER_JWS_ALGORITHMS}
       client:
         provider:
           keycloak:
-            token-uri: ${RHSSO_TOKEN_URI}
+            token-uri: ${RHSSO_CLIENT_TOKEN_URI}
         registration:
           keycloak:
             client-id: ${RHSSO_CLIENT_ID}
