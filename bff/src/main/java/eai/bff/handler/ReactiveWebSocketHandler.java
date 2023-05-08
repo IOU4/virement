@@ -33,7 +33,7 @@ public class ReactiveWebSocketHandler implements WebSocketHandler {
     URI url;
 
     try {
-      url = new URI(apiWebsocket + "/sold");
+      url = new URI(apiWebsocket + "/total");
     } catch (URISyntaxException e) {
       throw new RuntimeException(e);
     }
@@ -48,7 +48,7 @@ public class ReactiveWebSocketHandler implements WebSocketHandler {
         return session.send(messages
           .doOnNext(message -> logger.log(Level.INFO, "Incoming Message: " + message))
           .map(session::textMessage)
-          .doOnComplete(() -> logger.log(Level.INFO, "Session Completed"))
+          .doAfterTerminate(() -> logger.log(Level.INFO, "Session Terminated!"))
         );
       });
   }

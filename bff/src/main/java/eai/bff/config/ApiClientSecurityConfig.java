@@ -2,7 +2,6 @@ package eai.bff.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientProviderBuilder;
@@ -38,6 +37,7 @@ public class ApiClientSecurityConfig {
       .csrf(ServerHttpSecurity.CsrfSpec::disable)
       .oauth2Client().and()
       .authorizeExchange(exchanges -> exchanges
+        .pathMatchers("/total").permitAll()
         .anyExchange().authenticated()
       )
       .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt)
