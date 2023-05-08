@@ -5,12 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,16 +20,16 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class VirementWSHandler implements WebSocketHandler {
 
-  public static List<WebSocketSession> sessions = new ArrayList<>();
+  public final WSSessionService wsSessionService;
+  public final VirementService virementService;
 
-  private final VirementService virementService;
-  private final ObjectMapper objectMapper;
+  public static List<WebSocketSession> sessions = new ArrayList<>();
 
   @Override
   public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-    log.info("connection established {}", session.getId());
+    log.info("new connection established {}", session.getId());
     VirementWSHandler.sessions.add(session);
-    session.sendMessage(new TextMessage(objectMapper.writeValueAsString(virementService.findAll().size())));
+    wsSessionService.sendTotalBySession(session, String.valueOf(virementService.findAll().size()));
   }
 
   @Override
