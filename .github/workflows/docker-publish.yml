@@ -49,7 +49,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       - name: Execute Gradle build
-        run: cd api && ./gradlew bootJar --no-daemon
+        run: ./gradlew :api:bootJar --no-daemon
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
