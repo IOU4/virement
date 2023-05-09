@@ -1,0 +1,20 @@
+services:
+  rhsso-db:
+    # TODO: update with static version
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=eai
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=rhsso
+    expose:
+      - 5432
+    volumes:
+      - rhsso-db:/var/lib/postgresql/data
+  rhsso:
+    image: emadou/rhsso:7.6
+    ports:
+      - 8090:8080
+      - 9990:9990
+volumes:
+  rhsso-db:
+    driver: local
