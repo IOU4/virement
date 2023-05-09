@@ -1,4 +1,4 @@
-package eai.bff.dto;
+package eai.bff.common.dto;
 
 public record FieldError(String field, String errorCode) {
 }

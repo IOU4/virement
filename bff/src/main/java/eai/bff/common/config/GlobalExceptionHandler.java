@@ -1,13 +1,13 @@
-package eai.bff.controller;
+package eai.bff.common.config;
 
-import eai.bff.dto.ErrorResponse;
+import eai.bff.common.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @RestControllerAdvice(basePackages = "eai.bff.controller")
-public class VirementApiExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(WebClientResponseException.class)
     public ErrorResponse handleWebClientResponseException(WebClientResponseException e) {

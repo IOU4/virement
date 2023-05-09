@@ -1,4 +1,4 @@
-package eai.bff.config;
+package eai.bff.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
