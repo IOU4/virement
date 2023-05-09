@@ -1,6 +1,6 @@
-package eai.bff.config;
+package eai.bff.common.config;
 
-import eai.bff.service.VirementApiService;
+import eai.bff.virement.service.VirementApiService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,10 +31,5 @@ public class ApiServiceConfig {
   @Bean
   public HttpServiceProxyFactory httpServiceProxyFactory(WebClient webClient) {
     return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(webClient)).build();
-  }
-
-  @Bean
-  public VirementApiService virementApiService(HttpServiceProxyFactory httpServiceProxyFactory) {
-    return httpServiceProxyFactory.createClient(VirementApiService.class);
   }
 }

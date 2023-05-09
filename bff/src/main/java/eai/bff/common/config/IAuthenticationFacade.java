@@ -1,4 +1,4 @@
-package eai.bff.config;
+package eai.bff.common.config;
 
 import org.springframework.security.core.Authentication;
 import reactor.core.publisher.Mono;

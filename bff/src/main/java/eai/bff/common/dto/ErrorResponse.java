@@ -1,4 +1,4 @@
-package eai.bff.dto;
+package eai.bff.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

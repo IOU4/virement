@@ -1,4 +1,4 @@
-package eai.bff.handler;
+package eai.bff.virement.handler;
 
 import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,7 +7,6 @@ import org.springframework.web.reactive.socket.WebSocketHandler;
 import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 import org.springframework.web.reactive.socket.client.WebSocketClient;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
@@ -39,18 +38,17 @@ public class ReactiveWebSocketHandler implements WebSocketHandler {
     }
 
     return client.execute(url,
-      virementApiSession -> {
-        logger.log(Level.INFO, "Connected Successfully!");
-
-        Flux<String> messages = virementApiSession.receive()
-          .map(WebSocketMessage::getPayloadAsText);
-
-        return session.send(messages
-          .doOnNext(message -> logger.log(Level.INFO, "Incoming Message: " + message))
-          .map(session::textMessage)
-          .doAfterTerminate(() -> logger.log(Level.INFO, "Session Terminated!"))
-        );
-      });
+      virementApiSession -> session.send(virementApiSession.receive()
+        .doOnSubscribe(subscription -> session.getHandshakeInfo().getPrincipal().doOnNext(principal ->
+            logger.log(Level.INFO, "User : " + principal.getName() + "Session Terminated!")
+          )
+        )
+        .map(WebSocketMessage::getPayloadAsText)
+        .doOnNext(message -> logger.log(Level.INFO, "Incoming Message: " + message))
+        .map(session::textMessage)
+        .doOnTerminate(() -> logger.log(Level.INFO, "Session Terminated!"))
+      )
+    );
   }
 
 }
