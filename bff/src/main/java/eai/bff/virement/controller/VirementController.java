@@ -1,6 +1,7 @@
 package eai.bff.virement.controller;
 
 import eai.bff.virement.dto.CreateVirementCommand;
+import eai.bff.virement.dto.VirementCreatedResponse;
 import eai.bff.virement.service.VirementApiService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class VirementController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public Mono<Void> createVirement(@RequestBody CreateVirementCommand command) {
+  public Mono<VirementCreatedResponse> createVirement(@RequestBody CreateVirementCommand command) {
     return virementService.createVirement(command);
   }
 }
