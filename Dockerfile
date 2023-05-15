@@ -3,7 +3,8 @@ FROM gradle:7.6.1-jdk17-alpine as build
 WORKDIR /app
 COPY ./bff/src ./bff/build.gradle.kts ./bff/
 COPY ./build.gradle.kts .
-RUN gradle bootjar --no-daemon --exclude-task test
+RUN ls
+RUN gradle :bff:bootjar --no-daemon --exclude-task test
 
 FROM eclipse-temurin:17-jre-alpine as run
 WORKDIR /app
