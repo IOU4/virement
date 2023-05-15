@@ -5,7 +5,7 @@ COPY ./build.gradle.kts ./settings.gradle.kts ./
 WORKDIR /app/bff
 COPY ./bff/src ./bff/build.gradle.kts ./
 
-RUN gradle :bff:build --no-daemon --no-build-cache --exclude-task test
+RUN gradle :bff:bootJar --no-daemon --no-build-cache --exclude-task test
 
 FROM eclipse-temurin:17-jre-alpine as run
 WORKDIR /app
