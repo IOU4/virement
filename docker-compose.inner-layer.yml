@@ -15,23 +15,30 @@ services:
       - RHSSO_CLIENT_SECRET=7eJHp3dSxKDUFRmQEFEK5SjFbGjyYrTo
     networks:
       - bff_network
-  inner_keycloak:
-    container_name: inner_keycloak
-    image: quay.io/keycloak/keycloak:latest
-    command: start-dev
-    ports:
-      - "8880:8080"
+  database:
+    image: postgres:15-alpine3.17
     environment:
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=password
+      - POSTGRES_USER=eai
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=rhsso
+    expose:
+      - 5432
     volumes:
-      - inner_keycloak_data:/opt/jboss/keycloak/standalone/data
+      - rhsso_db:/var/lib/postgresql/data
+    networks: rhsso_network
+  rhsso:
+    image: emadou/rhsso:7.6
+    ports:
+      - 8080:8080
+      - 9990:9990
     networks:
       - bff_network
-
+      - rhsso_network
 volumes:
-  inner_keycloak_data:
-
+  rhsso_db:
+    driver: local
 networks:
   bff_network:
+    driver: bridge
+  rhsso_network:
     driver: bridge
