@@ -1,4 +1,4 @@
-name: api-build
+name: bff-build
 on:
   push:
     branches:
@@ -14,7 +14,7 @@ on:
       - 'main'
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}-api
+  IMAGE_NAME: ${{ github.repository }}-bff
 jobs:
   build:
     runs-on: ubuntu-latest
