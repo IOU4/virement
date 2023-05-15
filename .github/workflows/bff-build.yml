@@ -27,13 +27,17 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      - name: Extract branch name
+        shell: build
+        run: echo "branch=$(echo ${GITHUB_REF_NAME})" >> $GITHUB_OUTPUT
+        id: extract_branch
       - name: Build and push Docker image
         id: build-and-push
         uses: docker/build-push-action@v4
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.GITHUB_HEAD_REF }}
+          tags: ${{ steps.extract_branch.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
