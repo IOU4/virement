@@ -28,7 +28,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       - name: Extract branch name
-        shell: build
+        shell: bash
         run: echo "branch=$(echo ${GITHUB_REF_NAME})" >> $GITHUB_OUTPUT
         id: extract_branch
       - name: Build and push Docker image
