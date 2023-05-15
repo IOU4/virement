@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-@HttpExchange(url = "${api.rest.topics.loyalty}", contentType = "application/json", accept = "application/json")
+@HttpExchange(url = "${api.rest.domains.loyalty}", contentType = "application/json", accept = "application/json")
 public interface LoyaltyApiService {
 
   @GetExchange(url = "/")
