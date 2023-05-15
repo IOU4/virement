@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/loyalty")
+@RequestMapping("${api.rest.topics.loyalty}")
 @ResponseStatus(HttpStatus.OK)
 public class LoyaltyController {
 

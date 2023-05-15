@@ -5,14 +5,13 @@ import eai.bff.balance.dto.AccountBalanceResponse;
 import eai.bff.balance.service.BalanceApiService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.service.annotation.GetExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/balance")
+@RequestMapping("${api.rest.topics.balance}")
 @ResponseStatus(HttpStatus.OK)
 public class BalanceController {
 

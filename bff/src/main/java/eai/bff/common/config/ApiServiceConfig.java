@@ -1,6 +1,5 @@
 package eai.bff.common.config;
 
-import eai.bff.virement.service.VirementApiService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,15 +11,15 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 @Configuration
 public class ApiServiceConfig {
 
-  @Value("${api.url}")
-  private String apiUrl;
+  @Value("${api.rest.base}")
+  private String apiBaseUrl;
 
   @Bean
   public WebClient webClient(ExchangeFilterFunction oauth2Filter,
                              ExchangeFilterFunction logRequestFilter,
                              ExchangeFilterFunction addCustomClaimsFilter,
                              ExchangeFilterFunction logResponseFilter) {
-    return WebClient.builder().baseUrl(apiUrl)
+    return WebClient.builder().baseUrl(apiBaseUrl)
       .filter(oauth2Filter)
       .filter(addCustomClaimsFilter)
       .filter(logRequestFilter)

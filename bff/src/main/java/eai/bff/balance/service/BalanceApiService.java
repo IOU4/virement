@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-@HttpExchange(url = "/balance", contentType = "application/json", accept = "application/json")
+@HttpExchange(url = "${api.rest.topics.balance}", contentType = "application/json", accept = "application/json")
 public interface BalanceApiService {
 
   @GetExchange(url = "/")
