@@ -1,7 +1,7 @@
 api:
   rest:
     base: https://api-2445584177002.staging.gw.apicast.io
-    topics:
+    domains:
       balance: /balance
       virement: /virement
       loyalty: /loyalty
