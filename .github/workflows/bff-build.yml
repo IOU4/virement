@@ -1,17 +1,5 @@
 name: bff-build
-on:
-  push:
-    branches:
-      - 'release'
-      - 'v*'
-      - 'main'
-    tags:
-      - 'v*'
-  pull_request:
-    branches:
-      - 'release'
-      - 'v*'
-      - 'main'
+on: [push]
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}-bff
@@ -45,7 +33,7 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ github.ref_name }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
