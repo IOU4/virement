@@ -2,7 +2,7 @@ FROM gradle:7.6.1-jdk17-alpine as build
 
 WORKDIR /app
 COPY ./bff/src ./bff/build.gradle.kts ./bff/
-COPY ./build.gradle.kts .
+COPY ./build.gradle.kts ./settings.gradle.kts ./
 RUN ls
 RUN gradle :bff:bootjar --no-daemon --exclude-task test
 
