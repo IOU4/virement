@@ -15,14 +15,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
-public class ReactiveWebSocketHandler implements WebSocketHandler {
+public class VirementReactiveWebSocketHandler implements WebSocketHandler {
 
-  @Value("${api.websocket}")
-  private String apiWebsocket;
+  @Value("${api.websocket.base}")
+  private String apiBaseWebSocketUrl;
+
+  @Value("${api.websocket.topics.virement}")
+  private String apiTopicWebSocketUrl;
+
   private final WebSocketClient client;
-  private final static Logger logger = Logger.getLogger(ReactiveWebSocketHandler.class.getName());
+  private final static Logger logger = Logger.getLogger(VirementReactiveWebSocketHandler.class.getName());
 
-  public ReactiveWebSocketHandler(WebSocketClient client) {
+  public VirementReactiveWebSocketHandler(WebSocketClient client) {
     this.client = client;
   }
 
@@ -32,7 +36,7 @@ public class ReactiveWebSocketHandler implements WebSocketHandler {
     URI url;
 
     try {
-      url = new URI(apiWebsocket + "/total");
+      url = new URI(apiBaseWebSocketUrl + apiTopicWebSocketUrl + "/total");
     } catch (URISyntaxException e) {
       throw new RuntimeException(e);
     }

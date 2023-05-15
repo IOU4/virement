@@ -1,6 +1,14 @@
 api:
-  url: https://api-2445584177002.staging.gw.apicast.io
-  websocket: wss://eai-api.serveo.net/virements
+  rest:
+    base: https://api-2445584177002.staging.gw.apicast.io
+    topics:
+      balance: /balance
+      virement: /virement
+      loyalty: /loyalty
+  websocket:
+    base: wss://eai-api.serveo.net
+    topics:
+      virement: /virement
 server:
   port: 8081
 logging:
