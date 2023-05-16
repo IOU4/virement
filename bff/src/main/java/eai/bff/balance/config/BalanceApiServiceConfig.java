@@ -15,8 +15,8 @@ public class BalanceApiServiceConfig {
   @Value("${api.rest.balance}")
   private String balanceApiUrl;
 
-  @Bean
-  public WebClient webClient(ExchangeFilterFunction oauth2Filter,
+  @Bean(name = "balanceApiWebClient")
+  public WebClient balanceApiWebClient(ExchangeFilterFunction oauth2Filter,
                              ExchangeFilterFunction logRequestFilter,
                              ExchangeFilterFunction addCustomClaimsFilter,
                              ExchangeFilterFunction logResponseFilter) {
@@ -28,12 +28,12 @@ public class BalanceApiServiceConfig {
       .build();
   }
 
-  @Bean
-  public HttpServiceProxyFactory httpServiceProxyFactory(WebClient webClient) {
-    return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(webClient)).build();
+  @Bean(name = "balanceApiServiceProxyFactory")
+  public HttpServiceProxyFactory balanceApiServiceProxyFactory(WebClient balanceApiWebClient) {
+    return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(balanceApiWebClient)).build();
   }
   @Bean
-  public BalanceApiService balanceApiService(HttpServiceProxyFactory httpServiceProxyFactory) {
-    return httpServiceProxyFactory.createClient(BalanceApiService.class);
+  public BalanceApiService balanceApiService(HttpServiceProxyFactory balanceApiServiceProxyFactory) {
+    return balanceApiServiceProxyFactory.createClient(BalanceApiService.class);
   }
 }

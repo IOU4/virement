@@ -15,8 +15,8 @@ public class LoyaltyApiServiceConfig {
   @Value("${api.rest.loyalty}")
   private String loyaltyApiUrl;
 
-  @Bean
-  public WebClient webClient(ExchangeFilterFunction oauth2Filter,
+  @Bean(name = "loyaltyApiWebClient")
+  public WebClient loyaltyApiWebClient(ExchangeFilterFunction oauth2Filter,
                              ExchangeFilterFunction logRequestFilter,
                              ExchangeFilterFunction addCustomClaimsFilter,
                              ExchangeFilterFunction logResponseFilter) {
@@ -28,12 +28,12 @@ public class LoyaltyApiServiceConfig {
       .build();
   }
 
-  @Bean
-  public HttpServiceProxyFactory httpServiceProxyFactory(WebClient webClient) {
-    return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(webClient)).build();
+  @Bean(name = "loyaltyApiServiceProxyFactory")
+  public HttpServiceProxyFactory loyaltyApiServiceProxyFactory(WebClient loyaltyApiWebClient) {
+    return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(loyaltyApiWebClient)).build();
   }
   @Bean
-  public LoyaltyApiService loyaltyApiService(HttpServiceProxyFactory httpServiceProxyFactory) {
-    return httpServiceProxyFactory.createClient(LoyaltyApiService.class);
+  public LoyaltyApiService loyaltyApiService(HttpServiceProxyFactory loyaltyApiServiceProxyFactory) {
+    return loyaltyApiServiceProxyFactory.createClient(LoyaltyApiService.class);
   }
 }

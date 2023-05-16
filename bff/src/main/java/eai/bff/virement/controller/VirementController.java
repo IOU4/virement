@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/virement")
 @ResponseStatus(HttpStatus.OK)
 public class VirementController {
 

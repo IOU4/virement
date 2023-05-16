@@ -6,7 +6,7 @@ api:
   websocket:
     virement: wss://api-2445584177002.staging.gw.apicast.io
 server:
-  port: 8081
+  port: 8082
 logging:
   level:
     root: debug
@@ -17,7 +17,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://outer-keycloak.serveo.net/realms/EAI_VIREMENTS_BFF/protocol/openid-connect/certs
+          jwk-set-uri: http://localhost:8890/realms/EAI_VIREMENTS_BFF/protocol/openid-connect/certs
           jws-algorithms: RS256
       client:
         provider:

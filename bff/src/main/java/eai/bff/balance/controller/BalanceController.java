@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/balance")
 @ResponseStatus(HttpStatus.OK)
 public class BalanceController {
 

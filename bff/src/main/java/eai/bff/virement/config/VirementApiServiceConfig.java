@@ -15,8 +15,8 @@ public class VirementApiServiceConfig {
   @Value("${api.rest.virement}")
   private String virementApiUrl;
 
-  @Bean
-  public WebClient webClient(ExchangeFilterFunction oauth2Filter,
+  @Bean(name = "virementApiWebClient")
+  public WebClient virementApiWebClient(ExchangeFilterFunction oauth2Filter,
                              ExchangeFilterFunction logRequestFilter,
                              ExchangeFilterFunction addCustomClaimsFilter,
                              ExchangeFilterFunction logResponseFilter) {
@@ -28,12 +28,12 @@ public class VirementApiServiceConfig {
       .build();
   }
 
-  @Bean
-  public HttpServiceProxyFactory httpServiceProxyFactory(WebClient webClient) {
-    return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(webClient)).build();
+  @Bean(name = "virementApiServiceProxyFactory")
+  public HttpServiceProxyFactory virementApiServiceProxyFactory(WebClient virementApiWebClient) {
+    return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(virementApiWebClient)).build();
   }
   @Bean
-  public VirementApiService virementApiService(HttpServiceProxyFactory httpServiceProxyFactory) {
-    return httpServiceProxyFactory.createClient(VirementApiService.class);
+  public VirementApiService virementApiService(HttpServiceProxyFactory virementApiServiceProxyFactory) {
+    return virementApiServiceProxyFactory.createClient(VirementApiService.class);
   }
 }

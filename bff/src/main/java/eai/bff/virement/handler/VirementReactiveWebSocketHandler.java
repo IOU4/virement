@@ -17,11 +17,8 @@ import java.util.logging.Logger;
 @Service
 public class VirementReactiveWebSocketHandler implements WebSocketHandler {
 
-  @Value("${api.websocket.base}")
-  private String apiBaseWebSocketUrl;
-
-  @Value("${api.websocket.topics.virement}")
-  private String apiTopicWebSocketUrl;
+  @Value("${api.websocket.virement}")
+  private String virementApiTopicWebSocketUrl;
 
   private final WebSocketClient client;
   private final static Logger logger = Logger.getLogger(VirementReactiveWebSocketHandler.class.getName());
@@ -36,7 +33,7 @@ public class VirementReactiveWebSocketHandler implements WebSocketHandler {
     URI url;
 
     try {
-      url = new URI(apiBaseWebSocketUrl + apiTopicWebSocketUrl + "/total");
+      url = new URI(virementApiTopicWebSocketUrl + "/total");
     } catch (URISyntaxException e) {
       throw new RuntimeException(e);
     }
