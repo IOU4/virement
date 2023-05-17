@@ -1,4 +1,4 @@
-name: bff-build
+name: Build and push BFF image
 on:
   push:
     paths:

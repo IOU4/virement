@@ -1,4 +1,4 @@
-name: api-build
+name: Build and push Api image
 on:
   push:
     paths:
