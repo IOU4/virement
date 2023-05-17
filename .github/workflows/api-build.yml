@@ -2,7 +2,8 @@ name: Build and push Api image
 on:
   push:
     paths:
-      - "api"
+      - "api/**"
+  workflow_dispatch:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}-api

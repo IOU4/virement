@@ -2,7 +2,8 @@ name: Build and push BFF image
 on:
   push:
     paths:
-      - "bff"
+      - "bff/**"
+  workflow_dispatch:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}-bff
