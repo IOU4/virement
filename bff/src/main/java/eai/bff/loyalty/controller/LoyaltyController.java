@@ -4,11 +4,11 @@ import eai.bff.loyalty.dto.AccountLoyaltyOperationResponse;
 import eai.bff.loyalty.dto.AccountLoyaltyResponse;
 import eai.bff.loyalty.service.LoyaltyApiService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/loyalty")
@@ -26,18 +26,9 @@ public class LoyaltyController {
     return loyaltyService.getAllLoyaltyAccounts();
   }
 
-  @GetMapping("/{accountId}")
-  Mono<AccountLoyaltyResponse> getLoyaltyAccountById(@PathVariable UUID accountId) {
-    return loyaltyService.getLoyaltyAccountById(accountId);
-  }
-
   @GetMapping("/operations")
   Flux<AccountLoyaltyOperationResponse> getAllLoyaltyOperations() {
     return loyaltyService.getAllLoyaltyOperations();
   }
 
-  @GetMapping("/{accountId}/operations")
-  Mono<AccountLoyaltyOperationResponse> getLoyaltyAccountOperationsById(@PathVariable UUID accountId) {
-    return loyaltyService.getLoyaltyAccountOperationsById(accountId);
-  }
 }
