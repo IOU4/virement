@@ -41,3 +41,4 @@ api/.env
 ldap.env
 openapi.json
 /ldap/
+bff/rhsso.cer

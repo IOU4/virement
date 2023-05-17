@@ -15,7 +15,7 @@ services:
       - RHSSO_CLIENT_SECRET=7eJHp3dSxKDUFRmQEFEK5SjFbGjyYrTo
     networks:
       - bff_network
-  database:
+  rhsso_database:
     image: postgres:15-alpine3.17
     environment:
       - POSTGRES_USER=eai
