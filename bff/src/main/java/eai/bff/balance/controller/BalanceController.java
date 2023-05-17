@@ -21,7 +21,7 @@ public class BalanceController {
     this.balanceService = service;
   }
 
-  @GetMapping
+  @GetMapping("/")
   public Flux<AccountBalanceResponse> getAllBalanceAccounts() {
     return balanceService.getAllBalanceAccounts();
   }
