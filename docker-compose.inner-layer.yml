@@ -34,9 +34,11 @@ services:
     networks:
       - bff_network
       - rhsso_network
+
 volumes:
   rhsso_db:
     driver: local
+
 networks:
   bff_network:
     driver: bridge

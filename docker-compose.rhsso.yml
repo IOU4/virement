@@ -1,7 +1,6 @@
 services:
   rhsso-db:
-    # TODO: update with static version
-    image: postgres:latest
+    image: postgres:15-alpine3.17
     environment:
       - POSTGRES_USER=eai
       - POSTGRES_PASSWORD=secret
@@ -15,6 +14,7 @@ services:
     ports:
       - 8090:8080
       - 9990:9990
+
 volumes:
   rhsso-db:
     driver: local

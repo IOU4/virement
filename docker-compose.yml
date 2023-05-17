@@ -23,8 +23,10 @@ services:
       - api_network
     env_file:
       - ./api/.env
+
 volumes:
   postgres_data:
+
 networks:
   api_network:
     driver: bridge
