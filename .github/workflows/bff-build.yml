@@ -1,5 +1,8 @@
 name: bff-build
-on: [push]
+on:
+  push:
+    paths:
+      - "bff"
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}-bff

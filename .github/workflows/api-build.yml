@@ -1,12 +1,8 @@
 name: api-build
 on:
   push:
-    branches:
-      - 'release'
-      - 'v*'
-      - 'main'
-    tags:
-      - 'v*'
+    paths:
+      - "api"
   pull_request:
     branches:
       - 'release'
