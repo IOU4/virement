@@ -21,7 +21,7 @@ public class LoyaltyController {
     this.loyaltyService = service;
   }
 
-  @GetMapping("/")
+  @GetMapping
   public Flux<AccountLoyaltyResponse> getAllLoyaltyAccounts() {
     return loyaltyService.getAllLoyaltyAccounts();
   }
