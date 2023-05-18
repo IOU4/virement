@@ -18,7 +18,7 @@ public class VirementController {
     this.virementService = service;
   }
 
-  @PostMapping("/")
+  @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public Mono<VirementCreatedResponse> createVirement(@RequestBody CreateVirementCommand command) {
     return virementService.createVirement(command);
