@@ -39,5 +39,4 @@ public class ReactiveWebSocketConfig {
   public ReactorNettyWebSocketClient webSocketClient() {
     return new ReactorNettyWebSocketClient();
   }
-
 }

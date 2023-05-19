@@ -7,10 +7,10 @@ import org.springframework.web.service.annotation.HttpExchange;
 import org.springframework.web.service.annotation.PostExchange;
 import reactor.core.publisher.Mono;
 
-@HttpExchange(accept = "application/json")
+@HttpExchange(url = "${api.rest.endpoints.virement}", contentType = "application/json", accept = "application/json")
 public interface VirementApiService {
 
-  @PostExchange(url = "/", contentType = "application/json")
+  @PostExchange
   Mono<VirementCreatedResponse> createVirement(@RequestBody CreateVirementCommand command);
 
 }

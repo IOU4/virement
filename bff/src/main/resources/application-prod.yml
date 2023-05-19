@@ -1,10 +1,14 @@
 api:
   rest:
-    balance: ${API_BALANCE_DOMAIN_URL}
-    virement: ${API_VIREMENT_DOMAIN_URL}
-    loyalty: ${API_LOYALTY_DOMAIN_URL}
+    base: ${API_REST_DOMAIN_URL}
+    endpoints:
+      balance: ${API_BALANCE_ENDPOINT}
+      virement: ${API_VIREMENT_ENDPOINT}
+      loyalty: ${API_LOYALTY_ENDPOINT}
   websocket:
-    virement: ${API_VIREMENT_WEBSOCKET_TOPIC_URL}
+    base: ${API_WEBSOCKET_DOMAIN_URL}
+    topics:
+      virement: ${API_VIREMENT_WEBSOCKET_TOPIC}
 server:
   port: 8080
 logging:

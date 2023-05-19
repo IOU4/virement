@@ -6,10 +6,10 @@ import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.HttpExchange;
 import reactor.core.publisher.Flux;
 
-@HttpExchange(contentType = "application/json", accept = "application/json")
+@HttpExchange(url = "${api.rest.endpoints.balance}", contentType = "application/json", accept = "application/json")
 public interface BalanceApiService {
 
-  @GetExchange(url = "/")
+  @GetExchange
   Flux<AccountBalanceResponse> getAllBalanceAccounts();
 
   @GetExchange(url = "/operations")
