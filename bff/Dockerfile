@@ -7,6 +7,7 @@ USER root
 COPY ./rhsso.cer $JAVA_HOME/lib/security
 WORKDIR  $JAVA_HOME/lib/security
 RUN keytool -keystore cacerts -storepass changeit -noprompt -trustcacerts -importcert -alias rhssocert -file rhsso.cer
+RUN keytool -keystore cacerts -storepass changeit -noprompt -trustcacerts -importcert -alias ingress-operator -file ingress-operator.cer
 
 WORKDIR /app
 
