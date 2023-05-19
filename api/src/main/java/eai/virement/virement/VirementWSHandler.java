@@ -3,6 +3,7 @@ package eai.virement.virement;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.annotation.Nonnull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketHandler;
@@ -26,24 +27,24 @@ public class VirementWSHandler implements WebSocketHandler {
   public static List<WebSocketSession> sessions = new ArrayList<>();
 
   @Override
-  public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+  public void afterConnectionEstablished(WebSocketSession session) {
     log.info("new connection established {}", session.getId());
     VirementWSHandler.sessions.add(session);
     wsSessionService.sendTotalBySession(session, String.valueOf(virementService.findAll().size()));
   }
 
   @Override
-  public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
-    log.info("new message: {}", message.getPayload().toString());
+  public void handleMessage(@Nonnull WebSocketSession session, WebSocketMessage<?> message) {
+    log.info("new message: {}", message.getPayload());
   }
 
   @Override
-  public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+  public void handleTransportError(@Nonnull WebSocketSession session, @Nonnull Throwable exception) {
     System.out.println("handleTransportError");
   }
 
   @Override
-  public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
+  public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) {
     log.info("connection {} closed with status {}", session.getId(), closeStatus.getCode());
     VirementWSHandler.sessions.remove(session);
   }

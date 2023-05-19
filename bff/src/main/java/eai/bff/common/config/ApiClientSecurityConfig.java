@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.client.registration.ReactiveClientReg
 import org.springframework.security.oauth2.client.web.DefaultReactiveOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.web.server.ServerOAuth2AuthorizedClientRepository;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import reactor.netty.http.client.HttpClient;
 
 @Configuration
 public class ApiClientSecurityConfig {
@@ -22,11 +21,6 @@ public class ApiClientSecurityConfig {
     authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
 
     return authorizedClientManager;
-  }
-
-  @Bean
-  public HttpClient httpClient() {
-    return HttpClient.create().noSSL();
   }
 
   @Bean
