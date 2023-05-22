@@ -16,13 +16,16 @@ import java.util.Map;
 @Configuration
 public class ReactiveWebSocketConfig {
 
-  @Value("${api.websocket.virement}")
-  private String virementApiWebSocketUrl;
+  @Value("${api.websocket.base}")
+  private String apiWebSocketBaseUrl;
+
+  @Value("${api.websocket.topics.virement}")
+  private String apiWebSocketVirementTopic;
 
   @Bean
   public HandlerMapping webSocketHandlerMapping(WebSocketHandler handler) {
     Map<String, WebSocketHandler> map = new HashMap<>();
-    map.put(virementApiWebSocketUrl + "/total", handler);
+    map.put(apiWebSocketBaseUrl + apiWebSocketVirementTopic + "/total", handler);
 
     SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
     handlerMapping.setUrlMap(map);
