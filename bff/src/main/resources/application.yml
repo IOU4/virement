@@ -6,7 +6,7 @@ api:
   websocket:
     virement: wss://api-2445584177002.staging.gw.apicast.io
 server:
-  port: 8082
+  port: 8081
 logging:
   level:
     root: debug
