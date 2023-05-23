@@ -7,7 +7,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public record VirementResponse(BaseId<UUID> id, UUID customerAccountSource, UUID customerAccountTarget,
+public record VirementResponse(BaseId<UUID> id, BaseId<UUID> customerAccountSource, BaseId<UUID> customerAccountTarget,
                                OperationStatus virementOperationStatus, String amount, BaseId<UUID> trackingId,
                                List<String> failureMessages, ZonedDateTime createdAt) {
 }
