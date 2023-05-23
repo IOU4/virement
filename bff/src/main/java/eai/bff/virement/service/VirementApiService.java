@@ -10,7 +10,7 @@ import org.springframework.web.service.annotation.PostExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@HttpExchange(url = "${api.rest.endpoints.virement}", contentType = "application/json", accept = "application/json")
+@HttpExchange(contentType = "application/json", accept = "application/json")
 public interface VirementApiService {
 
   @GetExchange
