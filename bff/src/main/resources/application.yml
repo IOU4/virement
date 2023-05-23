@@ -1,14 +1,10 @@
 api:
   rest:
-    base: https://api-2445584177002.staging.gw.apicast.io
-    endpoints:
-      virement: /virement
-      balance: /balance
-      loyalty: /loyalty
+    balance: https://api-2445584177002.staging.gw.apicast.io
+    virement: https://api-2445584177002.staging.gw.apicast.io
+    loyalty: https://api-2445584177002.staging.gw.apicast.io
   websocket:
-    base: wss://api-2445584177002.staging.gw.apicast.io
-    topics:
-      virement: /virement
+    virement: wss://api-2445584177002.staging.gw.apicast.io
 server:
   port: 8082
 logging:
